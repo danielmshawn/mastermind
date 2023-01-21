@@ -1,0 +1,51 @@
+Mastermind PesudoCode
+
+
+Elements:
+
+title
+
+text saying what is correct
+
+Play again button
+
+board ( 4x12 grid)
+
+“Pegs” (a 1x12 grid of 4x4 grids?)
+
+Color pickers ( 1x6 )
+
+Submit button
+
+
+Identify the application's state (data):
+
+Randomized code
+
+turn# to know what row to fill
+
+# that is right color
+
+# that is right color AND right position
+
+How to make “pegs” tell what is right color vs right position, and to what’s the order of operations in filling them? 
+
+How to pick colors: Click and drag or cycle through via clicks?
+
+
+Logic:
+
+Winning logic will just be guess === secret code
+
+Logic for “pegs” 
+
+
+Icebox: Mostly Design. What can I even realistically do?
+
+Long term not for now could be animation, or my potion/cauldron idea
+
+
+
+
+
+
