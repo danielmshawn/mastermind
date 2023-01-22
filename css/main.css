@@ -1,0 +1,53 @@
+* {
+    box-sizing: border-box;
+  }
+
+  body {
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    font-family: Helvetica;
+
+  }
+
+  h1 {
+    font-size: 3vmin;
+  }
+
+  /* HI. Currently trying to figure out how to get pegs made and then put next to cells.
+     perhaps try commenting out cells and making pegs first? these blocks of four are
+     tough. Perhaps each row is just a grid of 2x2? Then you could stack them on
+     top of each other? */
+
+  .board {
+    display: grid;
+    grid-template-columns: 4fr 1fr;
+    grid-template-rows: 1fr;
+  }
+
+  #cells {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat (12, 1fr);
+    gap: 1vmin;
+    margin-top: -4vmin
+    
+    
+
+    
+  }
+
+  #cells > div {
+    border-radius: 50%;
+    height: 1.5vmin;
+    width: 1.5vmin;
+    border: 0.1vmin solid black;
+  }
+
+  /* #pegs {
+    height:1.2vmin;
+    border: 0.07vmin solid black;
+  } */
