@@ -1,5 +1,17 @@
  /*----- constants -----*/
 
+ const COLORS = {
+  '0': 'white',
+  '1': 'red',
+  '2': 'blue',
+  '3': 'yellow',
+  '4': 'green',
+  '5': 'black',
+  '6': 'grey'
+ };
+
+
+
 
   /*----- state variables -----*/
 let board; //will be an array of 12 row arrays w 4 cells
@@ -35,6 +47,22 @@ function init() {
     [0,0,0,0], //row 10
     [0,0,0,0], //row 11
   ];
+
+  pegs = [  
+    [0,0,0,0], //row 0
+    [0,0,0,0], //row 1
+    [0,0,0,0], //row 2
+    [0,0,0,0], //row 3
+    [0,0,0,0], //row 4
+    [0,0,0,0], //row 5
+    [0,0,0,0], //row 6
+    [0,0,0,0], //row 7
+    [0,0,0,0], //row 8
+    [0,0,0,0], //row 9
+    [0,0,0,0], //row 10
+    [0,0,0,0], //row 11
+  ];
+
    rndCode = getRndCode
    turn = 0;
    winner = null;
@@ -44,7 +72,8 @@ function init() {
 
 //visualize all state in the DOM
 function render() {
-renderBoard ();
+renderBoard();
+renderPegs();
 renderMessage();
 
 //Hide/show UI elements ( play again button...also pegs? Seperate for pegs?
@@ -54,15 +83,41 @@ renderControls();
 }
 
 
-renderBoard() {
+function renderBoard() {
+  //Nested forEach iterating over every cell in each row of the 2d array
+  board.forEach(function(rowArr, rowIdx) {
+    rowArr.forEach(function(cellVal, colIdx) {
+      const cellId = `r${rowIdx}c${colIdx}`;
+      const cellEl = document.getElementById(cellId);
+      cellEl.style.backgroundColor = 'purple';
+    });
+
+  });
+}
+
+
+function renderPegs() {
+  pegs.forEach(function(rowArr, rowIdx) {
+    rowArr.forEach(function(pegVal, colIdx) {
+      const pegId = `r${rowIdx}peg${colIdx}`;
+      const pegEl = document.getElementById(pegId);
+      pegEl.style.backgroundColor = 'red';
+      console.log(pegEl);
+    });
+  
+  });
+  
+}
+
+
+
+
+
+function renderMessage() {
 
 }
 
-renderMessage() {
-
-}
-
-renderControls () {
+function renderControls() {
 
 }
 
