@@ -14,7 +14,7 @@
   }
 
   h1 {
-    font-size: 3vmin;
+    font-size: 5vmin;
     margin-bottom: -1vmin;
    
   }
@@ -22,6 +22,10 @@
   h3 {
     font-size: 1.7vmin;
 
+  }
+
+  #play-again {
+    font-size: 2vmin;
   }
 
   #right-color {
@@ -140,3 +144,6 @@
   background-color: grey;
 }
 
+#submit {
+font-size: 3vmin;
+}
