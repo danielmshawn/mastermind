@@ -15,29 +15,35 @@
 
   h1 {
     font-size: 3vmin;
+    margin-bottom: -1vmin;
+   
   }
 
-  /* HI. Currently trying to figure out how to get pegs made and then put next to cells.
-     perhaps try commenting out cells and making pegs first? these blocks of four are
-     tough. Perhaps each row is just a grid of 2x2? Then you could stack them on
-     top of each other? */
+  h3 {
+    font-size: 1.7vmin;
 
-  .board {
-    display: grid;
-    grid-template-columns: 4fr 1fr;
-    grid-template-rows: 1fr;
   }
 
+  #right-color {
+    margin-bottom: -1.5vmin;
+    margin-left: 2.3vmin;
+  }
+
+
+   #board {
+    display: flex;
+    justify-content: space-around;
+    margin: 3vmin 0 1vmin 0;
+
+  }
+     
   #cells {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     grid-template-rows: repeat (12, 1fr);
     gap: 1vmin;
-    margin-top: -4vmin
-    
-    
+    margin-right: 1vmin
 
-    
   }
 
   #cells > div {
@@ -45,9 +51,43 @@
     height: 1.5vmin;
     width: 1.5vmin;
     border: 0.1vmin solid black;
+  } 
+
+   #pegs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: repeat (12, 1fr);
+    grid-column-start: 2;
+    gap: 0.2vmin;
+    
   }
 
-  /* #pegs {
-    height:1.2vmin;
+  #pegs > div {
+    height: 0.6vmin;
+    width: 0.6vmin;
     border: 0.07vmin solid black;
-  } */
+   
+  }
+  
+  .flex-ctr {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+  } 
+
+  #picker {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 1vmin;
+    margin: 0.5vmin 0 1.2vmin;
+    
+  }
+
+  #picker > div {
+    border-radius: 50%;
+    height: 2.5vmin;
+    width: 2.5vmin;
+    border: 0.1vmin solid black;
+    
+  }
