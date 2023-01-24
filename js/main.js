@@ -2,7 +2,7 @@
 
   //How to generate a random code each game
   //How to click and drag. Is it easy? SHould I go do choosing anotherway? Need color choices to = key in COLORS object?
-  //How to iterate thtough only a row at a time after player submits choice and then compare + contrast with rndCode and alter correctColor + correctPosition 
+  //How to iterate thtough only a row at a time after player submits choice and then compare + contrast with secretCode and alter correctColor + correctPosition 
   //
 
 
@@ -10,15 +10,15 @@
 
  const COLORS = ['red', 'blue', 'yellow','green', 'black', 'grey']
 
- const PEGS = ['maroon', 'black'];
+ const PEGS = ['grey', 'black'];
 
 
 
   /*----- state variables -----*/
 let board; //will be an array of 12 row arrays w 4 cells
-let rndCode; // randomized winning code
+let secretCode; // randomized winning code
 let turn; // turn # so game knows which row on board to render
-let winner; // is playerChoice === rndCode?
+let winner; // is playerChoice === secretCode?
 let playerGuess;
 let colorChoice;
 let correctColor;
@@ -35,6 +35,7 @@ const markerEls = [...document.querySelectorAll('#markers > div')];
   /*----- event listeners -----*/
 document.getElementById('picker').addEventListener('click', handlePick);
 document.getElementById('markers').addEventListener('click', handleSelect);
+document.getElementById('submit').addEventListener('click', handleSubmit);
 
   /*----- functions -----*/
 init()
@@ -42,11 +43,11 @@ init()
 function init() {
   // to visualize the board's mapping to the DOM
   //bottom to top, left to right. 
-  board = [getNewGuess()];
+  board = [null, null, null, null]
 
   pegs = [];
-
-  rndCode = getSecretCode();
+  colorChoice = 'red';
+  secretCode = getSecretCode();
   turn = 0;
   winner = null;
   render();
@@ -55,41 +56,30 @@ function init() {
 
 //visualize all state in the DOM
 function render() {
-  renderBoard();
-  renderPegs();
+  renderColors();
   renderMessage();
 
   //Hide/show UI elements ( play again button...also pegs? Seperate for pegs?
   renderControls();
 
+ 
 
 }
 
 
-function renderBoard() {
-  //Nested forEach iterating over every cell in each row of the 2d array
-  board.forEach(function(rowArr, rowIdx) {
-    rowArr.forEach(function(cellVal, colIdx) {
-      const cellId = `r${rowIdx}c${colIdx}`;
-      const cellEl = document.getElementById(cellId);
-      cellEl.style.backgroundColor = COLORS[cellVal];
-    });
-  });
+function renderColors() {
+  board.forEach(function (color, idx) {
+    if(color) {
+      document.getElementById(`r${turn}c${idx}`).style.backgroundColor= `${color}`;
+    }
+  })
+  pegs.forEach(function (color, idx) {
+    if(color) {
+      document.getElementById(`p${turn}c${idx}`).style.backgroundColor= `${color}`;
+    }
+  })
 }
 
-
-function renderPegs() {
-  pegs.forEach(function(rowArr, rowIdx) {
-    rowArr.forEach(function(pegVal, colIdx) {
-      const pegId = `r${rowIdx}peg${colIdx}`;
-      const pegEl = document.getElementById(pegId);
-      pegEl.style.backgroundColor = PEGS[pegVal];
-    
-    });
-  
-  });
-  
-}
 
 
 
@@ -98,7 +88,7 @@ function renderPegs() {
 function renderMessage() {
   if(turn > 11) {
     messageEl.innerText = "Sorry, you've run out of choices!";
-  } else if (playerGuess === rndCode) {
+  } else if (playerGuess === secretCode) {
     messageEl.innerText = "Congratulations! You chose the right mushrooms!"
   } else {
     //Message saying # of maroon pegs in row + # of black pegs in row. 
@@ -111,33 +101,32 @@ function renderMessage() {
 
 function renderControls() {
 //Play Again button only visible when game ends 
-playAgainBtn.style.visibility = (turn > 11 || playerGuess === rndCode) ? 'visible': 'hidden';
-}
-
-
-
-
-function getRndCode() {
+playAgainBtn.style.visibility = (turn > 11 || playerGuess === secretCode) ? 'visible': 'hidden';
+//Need to hide markers here as well
 
 }
 
 
-// Player clicks a color, render is called to add to board
+
+// Player clicks a color, 
 function handlePick(evt) {
-  console.log(evt.target.id);
   colorChoice = evt.target.id;
-  render();
 }
 
 function handleSelect(evt) {
-  const idx = parseInt(evt.target.id);
-  board[board.length-1][idx] = colorChoice;
-  console.log(evt.target.id)
+  board[parseInt(evt.target.id)] = colorChoice;
+  render();
 }
 
-function getNewGuess() {
-  return [null, null, null, null]
+function handleSubmit(evt) {
+  if(board.includes(null)) return;
+  feedback();
+  winner = checkWinner();
+  console.log(winner, "winner")
+  render();
+  updateForNextTurn();
 }
+
 
 function getSecretCode() {
   let codeArr = [];
@@ -145,4 +134,37 @@ function getSecretCode() {
     codeArr.push(COLORS[Math.floor(Math.random()*COLORS.length)])
   }
   return codeArr;
+}
+
+function updateForNextTurn() {
+  board = board.map((cell) => null);
+  pegs = [];
+  turn = turn + 1;
+  console.log(turn);
+}
+
+function checkWinner() {
+  if(pegs.every(color => color === 'black')) return "winner"
+  return null;
+}
+
+function feedback() {
+  let tempArr = board.map(color => color)
+  let tempCode = secretCode.map(color => color)
+  tempArr.forEach(function(color, idx) {
+    if(color === tempCode[idx]) {
+      pegs.push('black');
+      tempArr[idx] = 7;
+      tempCode[idx] = 0;
+    }
+  })
+  tempArr.forEach(function(color, idx) {
+    if(tempCode.includes(color)) {
+      pegs.push('grey')
+      tempArr[idx] = 7
+      let colorIdx = tempCode.indexOf(color)
+      tempCode[colorIdx] = 0
+    }
+  })
+  console.log(tempArr);
 }
