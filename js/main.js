@@ -1,20 +1,16 @@
- /*----- constants -----*/
+// What I'm stuck on:
 
- const COLORS = {
-  '0': 'white',
-  '1': 'red',
-  '2': 'blue',
-  '3': 'yellow',
-  '4': 'green',
-  '5': 'black',
-  '6': 'grey'
- };
+  //How to generate a random code each game
+  //How to click and drag. Is it easy? SHould I go do choosing anotherway? Need color choices to = key in COLORS object?
+  //How to iterate thtough only a row at a time after player submits choice and then compare + contrast with rndCode and alter correctColor + correctPosition 
+  //
 
- const PEGS = {
-  '0': 'white',
-  '1': 'maroon', //correct color but not correct position
-  '2': 'black'   // correct color AND correct position
- }
+
+/*----- constants -----*/
+
+ const COLORS = ['red', 'blue', 'yellow','green', 'black', 'grey']
+
+ const PEGS = ['maroon', 'black'];
 
 
 
@@ -24,15 +20,21 @@ let rndCode; // randomized winning code
 let turn; // turn # so game knows which row on board to render
 let winner; // is playerChoice === rndCode?
 let playerGuess;
+let colorChoice;
+let correctColor;
+let correctPosition;
+
 
 
 
   /*----- cached elements  -----*/
 const messageEl = document.querySelector('h3');
 const playAgainBtn = document.getElementById('play-again');
+const markerEls = [...document.querySelectorAll('#markers > div')];
 
   /*----- event listeners -----*/
-
+document.getElementById('picker').addEventListener('click', handlePick);
+document.getElementById('markers').addEventListener('click', handleSelect);
 
   /*----- functions -----*/
 init()
@@ -40,40 +42,14 @@ init()
 function init() {
   // to visualize the board's mapping to the DOM
   //bottom to top, left to right. 
-  board = [  
-    [0,0,0,0], //row 0
-    [0,0,0,0], //row 1
-    [0,0,0,0], //row 2
-    [0,0,0,0], //row 3
-    [0,0,0,0], //row 4
-    [0,0,0,0], //row 5
-    [0,0,0,0], //row 6
-    [0,0,0,0], //row 7
-    [0,0,0,0], //row 8
-    [0,0,0,0], //row 9
-    [0,0,0,0], //row 10
-    [0,0,0,0], //row 11
-  ];
+  board = [getNewGuess()];
 
-  pegs = [  
-    [0,0,0,0], //row 0
-    [0,0,0,0], //row 1
-    [0,0,0,0], //row 2
-    [0,0,0,0], //row 3
-    [0,0,0,0], //row 4
-    [0,0,0,0], //row 5
-    [0,0,0,0], //row 6
-    [0,0,0,0], //row 7
-    [0,0,0,0], //row 8
-    [0,0,0,0], //row 9
-    [0,0,0,0], //row 10
-    [0,0,0,0], //row 11
-  ];
+  pegs = [];
 
-   rndCode = getRndCode
-   turn = 0;
-   winner = null;
-   render();
+  rndCode = getSecretCode();
+  turn = 0;
+  winner = null;
+  render();
   
 }
 
@@ -145,3 +121,28 @@ function getRndCode() {
 
 }
 
+
+// Player clicks a color, render is called to add to board
+function handlePick(evt) {
+  console.log(evt.target.id);
+  colorChoice = evt.target.id;
+  render();
+}
+
+function handleSelect(evt) {
+  const idx = parseInt(evt.target.id);
+  board[board.length-1][idx] = colorChoice;
+  console.log(evt.target.id)
+}
+
+function getNewGuess() {
+  return [null, null, null, null]
+}
+
+function getSecretCode() {
+  let codeArr = [];
+  for (let i=0; i < 4; i++) {
+    codeArr.push(COLORS[Math.floor(Math.random()*COLORS.length)])
+  }
+  return codeArr;
+}

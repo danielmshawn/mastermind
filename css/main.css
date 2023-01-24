@@ -118,6 +118,20 @@
     
   }
 
+#markers {
+  display: flex;
+  flex-direction: row;
+}
+
+#markers > div {
+  height: 2vmin;
+  border-width:1vmin;
+  border-style: solid;
+  border-color: lightgrey transparent transparent;
+  transform: scale(0.7);
+  margin-right: 1vmin;
+}
+
 
 #red {
   background-color: red;;
