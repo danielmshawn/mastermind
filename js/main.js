@@ -1,10 +1,6 @@
-// What I'm stuck on:
-
-  //How to generate a random code each game
-  //How to click and drag. Is it easy? SHould I go do choosing anotherway? Need color choices to = key in COLORS object?
-  //How to iterate thtough only a row at a time after player submits choice and then compare + contrast with secretCode and alter correctColor + correctPosition 
-  //
-
+// TO DOs - make markers disappear when game ends. 
+// Replace "_correct" h3 with hidden secret code.
+// Figure out a place for a 'reference' for pegs? How does the player know what they mean?
 
 /*----- constants -----*/
 
@@ -15,13 +11,12 @@
 
 
   /*----- state variables -----*/
-let board; //will be an array of 12 row arrays w 4 cells
-let secretCode; // randomized winning code
-let turn; // turn # so game knows which row on board to render
-let winner; // is playerChoice === secretCode?
-let playerGuess;
-let colorChoice;
-let correctColor;
+let board;            //Represents the row where the player will make their guess.
+let secretCode;       // randomized winning code
+let turn;             // turn # so game knows which row (array) on the board to modify and render
+let winner; 
+let colorChoice;      // variable for choosing color picker
+let correctColor;     
 let correctPosition;
 
 
@@ -31,20 +26,19 @@ let correctPosition;
 const messageEl = document.querySelector('h3');
 const playAgainBtn = document.getElementById('play-again');
 const markerEls = [...document.querySelectorAll('#markers > div')];
+const submitBtn = document.getElementById("submit")
 
   /*----- event listeners -----*/
 document.getElementById('picker').addEventListener('click', handlePick);
 document.getElementById('markers').addEventListener('click', handleSelect);
 document.getElementById('submit').addEventListener('click', handleSubmit);
+document.getElementById('play-again').addEventListener('click', init);
 
   /*----- functions -----*/
 init()
   //Initialize all state, then call render()
-function init() {
-  // to visualize the board's mapping to the DOM
-  //bottom to top, left to right. 
+function init() { 
   board = [null, null, null, null]
-
   pegs = [];
   colorChoice = 'red';
   secretCode = getSecretCode();
@@ -61,8 +55,6 @@ function render() {
 
   //Hide/show UI elements ( play again button...also pegs? Seperate for pegs?
   renderControls();
-
- 
 
 }
 
@@ -81,27 +73,25 @@ function renderColors() {
 }
 
 
-
-
-
-
 function renderMessage() {
-  if(turn > 11) {
-    messageEl.innerText = "Sorry, you've run out of choices!";
-  } else if (playerGuess === secretCode) {
+  if(turn > 9) {
+    messageEl.innerText = "Sorry, you've run out of guesses!";
+  } else if (winner === 'winner') {
     messageEl.innerText = "Congratulations! You chose the right mushrooms!"
   } else {
-    //Message saying # of maroon pegs in row + # of black pegs in row. 
-    //Will need to do a forEach loop that counts how many 1's, then 2's
-    //In the specfic row's peg array?
-    messageEl.innerHTML = `<span style="color: maroon"></span> : Right color<br>
-    <span style="color: black"></span> : Right position & color`;
+    // Message saying # of black pegs in row + # of black pegs in row. 
+    // Will need to do a forEach loop that counts how many 1's, then 2's
+    // In the specfic row's peg array? Yeeeeeah this is now an ICEBOX
+    // messageEl.innerHTML = `<span style="color: maroon"></span> : Right color<br>
+    // <span style="color: black"></span> : Right position & color`;
   }
 }
 
 function renderControls() {
 //Play Again button only visible when game ends 
-playAgainBtn.style.visibility = (turn > 11 || playerGuess === secretCode) ? 'visible': 'hidden';
+playAgainBtn.style.visibility = (turn > 9 || winner === 'winner') ? 'visible': 'hidden';
+// Submit button disappears when game ends
+submitBtn.style.visibility = (turn > 9 || winner === 'winner') ? 'hidden': 'visible';
 //Need to hide markers here as well
 
 }
@@ -118,35 +108,16 @@ function handleSelect(evt) {
   render();
 }
 
+
+
 function handleSubmit(evt) {
   if(board.includes(null)) return;
   feedback();
   winner = checkWinner();
-  console.log(winner, "winner")
   render();
   updateForNextTurn();
 }
 
-
-function getSecretCode() {
-  let codeArr = [];
-  for (let i=0; i < 4; i++) {
-    codeArr.push(COLORS[Math.floor(Math.random()*COLORS.length)])
-  }
-  return codeArr;
-}
-
-function updateForNextTurn() {
-  board = board.map((cell) => null);
-  pegs = [];
-  turn = turn + 1;
-  console.log(turn);
-}
-
-function checkWinner() {
-  if(pegs.every(color => color === 'black')) return "winner"
-  return null;
-}
 
 function feedback() {
   let tempArr = board.map(color => color)
@@ -166,5 +137,35 @@ function feedback() {
       tempCode[colorIdx] = 0
     }
   })
-  console.log(tempArr);
+  
 }
+
+
+function checkWinner() {
+  if (pegs.every(color => color === 'black') && (pegs.length === 4)) return "winner";
+  return null;
+
+}
+
+function updateForNextTurn() {
+  board = board.map((cell) => null);
+  pegs = [];
+  turn = turn + 1;
+}
+
+
+
+function getSecretCode() {
+  let codeArr = [];
+  for (let i=0; i < 4; i++) {
+    codeArr.push(COLORS[Math.floor(Math.random()*COLORS.length)])
+  }
+  return codeArr;
+}
+
+
+
+
+
+
+
