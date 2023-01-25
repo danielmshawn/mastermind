@@ -19,9 +19,24 @@
    
   }
 
-  h3 {
+  h2 {
     font-size: 1.7vmin;
 
+  }
+
+  #secret-code {
+    display:flex;
+    justify-content: space-around;
+    width:15vmin;
+    margin: 5vmin 0; 
+    
+  }
+
+  #secret-code > div{
+    border-radius: 50%;
+    height: 2.5vmin;
+    width: 2.5vmin;
+    border: 0.1vmin solid black;
   }
 
   #play-again {
