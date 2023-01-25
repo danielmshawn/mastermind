@@ -38,7 +38,7 @@ const secretCodeAnswer = document.getElementById('secret-code');
 document.getElementById('picker').addEventListener('click', handlePick);
 document.getElementById('markers').addEventListener('click', handleSelect);
 document.getElementById('submit').addEventListener('click', handleSubmit);
-document.getElementById('play-again').addEventListener('click', init);
+document.getElementById('play-again').addEventListener('click', handlePlayAgain);
 
 
 
@@ -46,6 +46,8 @@ document.getElementById('play-again').addEventListener('click', init);
 init()
 //Initialize all state, then call render()
 function init() {
+
+  
   board = [null, null, null, null]
   pegs = [];
   colorChoice = 'red';
@@ -53,7 +55,6 @@ function init() {
   winner = null;
   secretCode = getSecretCode();
   secretCodeDisplayArr = secretCode.map(color => color);
-  clearBoard();
   render();
 
 }
@@ -61,6 +62,7 @@ function init() {
 //visualize all state in the DOM
 function render() {
   renderColors();
+  //Text changes depending on state
   renderMessage();
   //Hide/show UI elements
   renderControls();
@@ -98,7 +100,7 @@ function renderControls() {
   playAgainBtn.style.visibility = (turn > 9 || winner === 'winner') ? 'visible' : 'hidden';
   // Submit button disappears when game ends
   submitBtn.style.visibility = (turn > 9 || winner === 'winner') ? 'hidden' : 'visible';
-  //Need to hide markers here as well
+  //Selectors are hidden when game ends
   markerEls.forEach(function (markerEl) {
     const hideMarker = (turn > 9 || winner === 'winner');
     markerEl.style.visibility = hideMarker ? 'hidden' : 'visible';
@@ -110,7 +112,7 @@ function renderControls() {
 function handlePick(evt) {
   colorChoice = evt.target.id;
 }
-
+// Selector renders to board
 function handleSelect(evt) {
   board[parseInt(evt.target.id)] = colorChoice;
   render();
@@ -163,8 +165,24 @@ function getSecretCode() {
   return codeArr;
 };
 
-function clearBoard() {
-// use for loop to `` to the proper rows and change all background color to white?
+// function clearBoard() {
+//   for(let i = 0; i >= 9; i++) {
+//     for(let j=0;j >= 3; j++) {
+//    document.getElementById(`r${i}c${j}`).style.backgroundColor = 'white';
+//       };
+//     }
+//   }
 
-
+function handlePlayAgain() {
+  for (let i = 0; i >= 9; i++) {
+    for (let j = 0; j >= 3; j++) {
+      document.getElementById(`r${i}c${j}`).style.backgroundColor = 'white';
+    };
+  }
+  for (let i = 0; i >= 9; i++) {
+    for (let j = 0; j >= 3; j++) {
+      document.getElementById(`p${i}c${j}`).style.backgroundColor = 'white';
+      init();
+    }
+  }
 }
