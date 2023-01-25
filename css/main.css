@@ -64,10 +64,6 @@
 
   }
 
-.row {
-  /* height:3vmin; */
-}
-
   #cells > .row {
     display: flex;
     justify-content: space-around;

@@ -14,7 +14,7 @@ const PEGS = ['grey', 'black'];
 
 
 /*----- state variables -----*/
-let board;            //Represents the row where the player will make their guess.
+let board;            // Represents the row where the player will make their guess.
 let secretCode;       // randomized winning code
 let turn;             // turn # so game knows which row (array) on the board to modify and render
 let winner;
@@ -165,24 +165,17 @@ function getSecretCode() {
   return codeArr;
 };
 
-// function clearBoard() {
-//   for(let i = 0; i >= 9; i++) {
-//     for(let j=0;j >= 3; j++) {
-//    document.getElementById(`r${i}c${j}`).style.backgroundColor = 'white';
-//       };
-//     }
-//   }
 
 function handlePlayAgain() {
-  for (let i = 0; i >= 9; i++) {
-    for (let j = 0; j >= 3; j++) {
+  for (let i = 0; i <= 9; i++) {
+    for (let j = 0; j <= 3; j++) {
       document.getElementById(`r${i}c${j}`).style.backgroundColor = 'white';
     };
   }
-  for (let i = 0; i >= 9; i++) {
-    for (let j = 0; j >= 3; j++) {
+  for (let i = 0; i <= 9; i++) {
+    for (let j = 0; j <= 3; j++) {
       document.getElementById(`p${i}c${j}`).style.backgroundColor = 'white';
-      init();
     }
   }
+  init();
 }
