@@ -1,5 +1,5 @@
 // TO DOs - 2
-// Game not ending when I run out of turns.
+// Add hover effect to buttons. Picker and markers as well?
 // Do you want secret code divs visible the whole time, and render when game ends?
 // Favicon
 // Audio?
@@ -12,8 +12,8 @@
 // Create variable alongside turn that will increment along with it.  
 
 /*----- constants -----*/
-const COLORS = ['red', 'blue', 'yellow', 'purple', 'black', 'grey']
-const PEGS = ['grey', 'black'];
+const COLORS = ['red', 'blue', 'yellow', 'purple', 'orange', 'black']
+const PEGS = ['#DEDABD', '#D84028'];
 
 
 
@@ -99,7 +99,7 @@ function renderMessage() {
   } else if (winner === 'winner') {
     messageEl.innerText = "Congratulations! You chose the right mushrooms!";
   } else {
-    messageEl.innerHTML = "A <span style='color:red'>Toad</span>breaking Game"
+    messageEl.innerHTML = "A <span style='color:#F5C624'>Toad</span>breaking Game"
   }
 }
 
@@ -120,7 +120,6 @@ function renderControls() {
       document.getElementById(`secret${idx}`).style.backgroundColor = 'transparent';
     }
   })
-  // secretCodeAnswer.style.visibility = (guessCounter > 9 || winner === 'winner') ? 'visible' : 'hidden';
 }
 
 // Player clicks a color, 
@@ -147,14 +146,14 @@ function feedback() {
   let tempCode = secretCode.map(color => color)
   tempArr.forEach(function (color, idx) {
     if (color === tempCode[idx]) {
-      pegs.push('black');
+      pegs.push('#D84028');
       tempArr[idx] = 7;
       tempCode[idx] = 0;
     }
   })
   tempArr.forEach(function (color, idx) {
     if (tempCode.includes(color)) {
-      pegs.push('grey')
+      pegs.push('#DEDABD')
       tempArr[idx] = 7
       let colorIdx = tempCode.indexOf(color)
       tempCode[colorIdx] = 0
@@ -163,7 +162,7 @@ function feedback() {
 }
 
 function checkWinner() {
-  if (pegs.every(color => color === 'black') && (pegs.length === 4)) return "winner";
+  if (pegs.every(color => color === '#D84028') && (pegs.length === 4)) return "winner";
   return null;
 }
 
