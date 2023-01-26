@@ -1,11 +1,13 @@
-// TO DOs - 2 biggies...
+// TO DOs - 2
 // Game not ending when I run out of turns.
-// Play again button isnt resetting board :/
+// Do you want secret code divs visible the whole time, and render when game ends?
 // Figure out a place for a 'reference' for pegs? How does the player know what they mean?
 // Hover effects?
 // Change markers. At LEAST flip triangles, but something else maybe. Frogs? lol
 // Also...will colors replacing with images...that will make code no longer work, right? Becuase of colors.
 // MushroomMind...a "Toad"breaking game
+
+// Create variable alongside turn that will increment along with it.  
 
 /*----- constants -----*/
 const COLORS = ['red', 'blue', 'yellow', 'purple', 'black', 'grey']
@@ -22,6 +24,7 @@ let colorChoice;      // variable for choosing color picker
 let correctColor;
 let correctPosition;
 let secretCodeDisplayArr;
+let guessCounter;     
 
 
 
@@ -47,11 +50,12 @@ init()
 //Initialize all state, then call render()
 function init() {
 
-  
+
   board = [null, null, null, null]
   pegs = [];
   colorChoice = 'red';
   turn = 0;
+  guessCounter = 0;
   winner = null;
   secretCode = getSecretCode();
   secretCodeDisplayArr = secretCode.map(color => color);
@@ -88,24 +92,26 @@ function renderColors() {
 }
 
 function renderMessage() {
-  if (turn > 9) {
+  if ((guessCounter > 9) && (winner !== 'winner')) {
     messageEl.innerText = "Sorry, you've run out of guesses!";
   } else if (winner === 'winner') {
-    messageEl.innerText = "Congratulations! You chose the right mushrooms!"
+    messageEl.innerText = "Congratulations! You chose the right mushrooms!";
+  } else {
+    messageEl.innerHTML = "A <span style='color:red'>Toad</span>breaking Game"
   }
 }
 
 function renderControls() {
   //Play Again button only visible when game ends 
-  playAgainBtn.innerText = (turn > 9 || winner === 'winner') ? 'Play Again!' : 'Reset Game';
+  playAgainBtn.innerText = (guessCounter > 9 || winner === 'winner') ? 'Play Again!' : 'Reset Game';
   // Submit button disappears when game ends
-  submitBtn.style.visibility = (turn > 9 || winner === 'winner') ? 'hidden' : 'visible';
+  submitBtn.style.visibility = (guessCounter > 9 || winner === 'winner') ? 'hidden' : 'visible';
   //Selectors are hidden when game ends
   markerEls.forEach(function (markerEl) {
-    const hideMarker = (turn > 9 || winner === 'winner');
+    const hideMarker = (guessCounter > 9 || winner === 'winner');
     markerEl.style.visibility = hideMarker ? 'hidden' : 'visible';
   });
-  secretCodeAnswer.style.visibility = (turn > 9 || winner === 'winner') ? 'visible' : 'hidden';
+  secretCodeAnswer.style.visibility = (guessCounter > 9 || winner === 'winner') ? 'visible' : 'hidden';
 }
 
 // Player clicks a color, 
@@ -122,6 +128,7 @@ function handleSubmit(evt) {
   if (board.includes(null)) return;
   feedback();
   winner = checkWinner();
+  guessCounter = guessCounter + 1;
   render();
   updateForNextTurn();
 }
@@ -155,6 +162,7 @@ function updateForNextTurn() {
   board = board.map((cell) => null);
   pegs = [];
   turn = turn + 1;
+  
 }
 
 function getSecretCode() {
