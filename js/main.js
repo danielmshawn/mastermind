@@ -1,6 +1,8 @@
 // TO DOs - 2
 // Game not ending when I run out of turns.
 // Do you want secret code divs visible the whole time, and render when game ends?
+// Favicon
+// Audio?
 // Figure out a place for a 'reference' for pegs? How does the player know what they mean?
 // Hover effects?
 // Change markers. At LEAST flip triangles, but something else maybe. Frogs? lol
@@ -24,7 +26,7 @@ let colorChoice;      // variable for choosing color picker
 let correctColor;
 let correctPosition;
 let secretCodeDisplayArr;
-let guessCounter;     
+let guessCounter;
 
 
 
@@ -108,10 +110,17 @@ function renderControls() {
   submitBtn.style.visibility = (guessCounter > 9 || winner === 'winner') ? 'hidden' : 'visible';
   //Selectors are hidden when game ends
   markerEls.forEach(function (markerEl) {
-    const hideMarker = (guessCounter > 9 || winner === 'winner');
-    markerEl.style.visibility = hideMarker ? 'hidden' : 'visible';
+    markerEl.style.visibility = (guessCounter > 9 || winner === 'winner') ? 'hidden' : 'visible';
   });
-  secretCodeAnswer.style.visibility = (guessCounter > 9 || winner === 'winner') ? 'visible' : 'hidden';
+  //Only render secret code when game is over
+  secretCodeDisplayArr.forEach(function (color, idx) {
+    if (guessCounter > 9 || winner === 'winner') {
+      document.getElementById(`secret${idx}`).style.backgroundColor = `${color}`;
+    } else { 
+      document.getElementById(`secret${idx}`).style.backgroundColor = 'transparent';
+    }
+  })
+  // secretCodeAnswer.style.visibility = (guessCounter > 9 || winner === 'winner') ? 'visible' : 'hidden';
 }
 
 // Player clicks a color, 
@@ -162,7 +171,7 @@ function updateForNextTurn() {
   board = board.map((cell) => null);
   pegs = [];
   turn = turn + 1;
-  
+
 }
 
 function getSecretCode() {

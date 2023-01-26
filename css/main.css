@@ -10,23 +10,36 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #008148;
+    background-image: url(/images/background.png);
+    background-size:     cover;                     
+    background-repeat:   no-repeat;
+    background-position: center center;
    
     
 
   }
 
   h1 {
+    font-family: marshmallow-fluff, sans-serif;
+    /* 1 pixel black shadow to left, top, right and bottom */
+    font-style: normal;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    font-weight: 400;
     font-size: 5vmin;
-    color: #553A41;
+    color: #DEDABD;
     
    
    
   }
 
   h2 {
+    font-family: "manteiga-gorda", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
     font-size: 3vmin;
-    color: #553A41;
+    color:#DEDABD;
+
 
   }
 
@@ -82,7 +95,7 @@
     justify-content: space-around;
     align-items: center;
     width: 15vmin;
-    height: 5vmin;
+    height: 3.5vmin;
     /* border: solid .1vmin #553A41; */
   } 
 
@@ -127,6 +140,24 @@
     
   } 
 
+  #markers {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 15vmin;
+    margin-right: 1.4vmin;
+    margin-bottom: 3vmin;
+  }
+  
+  #markers > div {
+    height: 2vmin;
+    border-width: 1vmin;
+    border-style: solid;
+    border-color: #CBB9A8;
+    transform: scale(0.7);
+    margin-right: 1vmin;
+  }
+
   #picker {
     display: grid;
     grid-template-columns: repeat(6, 1fr);
@@ -143,22 +174,6 @@
     
   }
 
-#markers {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-around;
-  width: 15vmin;
-  margin-right: 1.4vmin
-}
-
-#markers > div {
-  height: 2vmin;
-  border-width: 1vmin;
-  border-style: solid;
-  border-color: #CBB9A8;
-  transform: scale(0.7);
-  margin-right: 1vmin;
-}
 
 
 #red {
