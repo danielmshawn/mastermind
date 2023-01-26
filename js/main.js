@@ -8,7 +8,7 @@
 // MushroomMind...a "Toad"breaking game
 
 /*----- constants -----*/
-const COLORS = ['red', 'blue', 'yellow', 'green', 'black', 'grey']
+const COLORS = ['red', 'blue', 'yellow', 'purple', 'black', 'grey']
 const PEGS = ['grey', 'black'];
 
 
@@ -97,7 +97,7 @@ function renderMessage() {
 
 function renderControls() {
   //Play Again button only visible when game ends 
-  playAgainBtn.style.visibility = (turn > 9 || winner === 'winner') ? 'visible' : 'hidden';
+  playAgainBtn.innerText = (turn > 9 || winner === 'winner') ? 'Play Again!' : 'Reset Game';
   // Submit button disappears when game ends
   submitBtn.style.visibility = (turn > 9 || winner === 'winner') ? 'hidden' : 'visible';
   //Selectors are hidden when game ends
@@ -169,12 +169,12 @@ function getSecretCode() {
 function handlePlayAgain() {
   for (let i = 0; i <= 9; i++) {
     for (let j = 0; j <= 3; j++) {
-      document.getElementById(`r${i}c${j}`).style.backgroundColor = 'white';
+      document.getElementById(`r${i}c${j}`).style.backgroundColor = 'transparent';
     };
   }
   for (let i = 0; i <= 9; i++) {
     for (let j = 0; j <= 3; j++) {
-      document.getElementById(`p${i}c${j}`).style.backgroundColor = 'white';
+      document.getElementById(`p${i}c${j}`).style.backgroundColor = 'transparent';
     }
   }
   init();
