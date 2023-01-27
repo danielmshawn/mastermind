@@ -1,31 +1,24 @@
-// TO DOs - 2
-// Add hover effect to buttons. Picker and markers as well?
-// Do you want secret code divs visible the whole time, and render when game ends?
-// Favicon
-// Audio?
-// Figure out a place for a 'reference' for pegs? How does the player know what they mean?
-// Hover effects?
-// Change markers. At LEAST flip triangles, but something else maybe. Frogs? lol
-// Also...will colors replacing with images...that will make code no longer work, right? Becuase of colors.
-// MushroomMind...a "Toad"breaking game
-
-// Create variable alongside turn that will increment along with it.  
 
 /*----- constants -----*/
 const COLORS = ['red', 'blue', 'yellow', 'purple', 'orange', 'black']
-const PEGS = ['#DEDABD', '#D84028'];
+// Hex colors used for better colors.
+const PEGS = ['#DEDABD', '#D84028']; 
 
 
 
 /*----- state variables -----*/
-let board;            // Represents the row where the player will make their guess.
-let secretCode;       // randomized winning code
-let turn;             // turn # so game knows which row (array) on the board to modify and render
+// Represents the row where the player will make their guess.
+let board;
+// Randomized winning code
+let secretCode;
+// Turn # so game knows which row (array) on the board to modify and render       
+let turn;
 let winner;
-let colorChoice;      // variable for choosing color picker
-let correctColor;
-let correctPosition;
+// variable for choosing color picker and choosing where to guess
+let colorChoice;
+//Array that holds the winning code to be displayed at end of game
 let secretCodeDisplayArr;
+// Needed to end game when out of turns. Necessary because I didn't seperate turn increment properly from render()
 let guessCounter;
 
 
@@ -49,10 +42,9 @@ document.getElementById('play-again').addEventListener('click', handlePlayAgain)
 
 /*----- functions -----*/
 init()
+
 //Initialize all state, then call render()
 function init() {
-
-
   board = [null, null, null, null]
   pegs = [];
   colorChoice = 'red';
@@ -90,7 +82,6 @@ function renderColors() {
       document.getElementById(`secret${idx}`).style.backgroundColor = `${color}`;
     }
   })
-
 }
 
 function renderMessage() {
@@ -104,19 +95,19 @@ function renderMessage() {
 }
 
 function renderControls() {
-  //Play Again button only visible when game ends 
+  // Reset Game button will display "Play Again!" when game is over
   playAgainBtn.innerText = (guessCounter > 9 || winner === 'winner') ? 'Play Again!' : 'Reset Game';
   // Submit button disappears when game ends
   submitBtn.style.visibility = (guessCounter > 9 || winner === 'winner') ? 'hidden' : 'visible';
-  //Selectors are hidden when game ends
+  // Selectors are hidden when game ends
   markerEls.forEach(function (markerEl) {
     markerEl.style.visibility = (guessCounter > 9 || winner === 'winner') ? 'hidden' : 'visible';
   });
-  //Only render secret code when game is over
+  // Only render secret code when game is over
   secretCodeDisplayArr.forEach(function (color, idx) {
     if (guessCounter > 9 || winner === 'winner') {
       document.getElementById(`secret${idx}`).style.backgroundColor = `${color}`;
-    } else { 
+    } else {
       document.getElementById(`secret${idx}`).style.backgroundColor = 'transparent';
     }
   })
@@ -126,6 +117,7 @@ function renderControls() {
 function handlePick(evt) {
   colorChoice = evt.target.id;
 }
+
 // Selector renders to board
 function handleSelect(evt) {
   board[parseInt(evt.target.id)] = colorChoice;
@@ -170,7 +162,6 @@ function updateForNextTurn() {
   board = board.map((cell) => null);
   pegs = [];
   turn = turn + 1;
-
 }
 
 function getSecretCode() {
@@ -180,7 +171,6 @@ function getSecretCode() {
   }
   return codeArr;
 };
-
 
 function handlePlayAgain() {
   for (let i = 0; i <= 9; i++) {

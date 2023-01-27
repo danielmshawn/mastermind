@@ -1,172 +1,165 @@
 * {
-    box-sizing: border-box;
-  }
+  box-sizing: border-box;
+}
 
-  body {
-    height: 100vh;
-    margin: 0;
-    font-family: Helvetica;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-image: url("../images/background.png");
-    background-size:     cover;                     
-    background-repeat:   no-repeat;
-    background-position: center center;
+body {
+  height: 100vh;
+  margin: 0;
+  font-family: Helvetica;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-image: url("../images/background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+}
 
-  }
+h1 {
+  font-family: "marshmallow-fluff", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  /* 1 pixel black shadow to left, top, right and bottom */
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-size: 5vmin;
+  color: #DEDABD;
+  margin: 5vmin 0 -4vmin 0;
+}
 
-  h1 {
-    font-family: "marshmallow-fluff", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    /* 1 pixel black shadow to left, top, right and bottom */
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    font-size: 5vmin;
-    color: #DEDABD;
-    margin: 5vmin 0 -4vmin 0;
-  }
+h2 {
+  font-family: "manteiga-gorda", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  font-size: 3.0vmin;
+  color: #AA71DA;
+  margin-bottom: -1vmin;
+}
 
-  h2 {
-    font-family: "manteiga-gorda", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
-    font-size: 3.0vmin;
-    color:#AA71DA;
-    margin-bottom: -1vmin;
-  }
+#secret-code {
+  display: flex;
+  justify-content: space-between;
+  gap: 1.5vmin;
+  border-style: outset;
+  border-color: #553A41;
+  border-width: 1vmin;
+  ;
+  padding: 0.5vmin 0.75vmin;
+  border-radius: 20%;
+  margin: 0 0;
+}
 
-  #secret-code {
-    display:flex;
-    justify-content: space-between;
-    gap: 1.5vmin;
-    border-style: outset;
-    border-color: #553A41;
-    border-width: 1vmin;;
-    padding: 0.5vmin 0.75vmin;
-    border-radius: 20%;
-    margin:  0 0;
-    
-  }
+#secret-code>div {
+  border-radius: 50%;
+  height: 4vmin;
+  width: 4vmin;
+  border: 0.1vmin solid black;
+}
 
-  #secret-code > div{
-    border-radius: 50%;
-    height: 4vmin;
-    width: 4vmin;
-    border: 0.1vmin solid black;
-  }
-  
 
-  #play-again {
-    background-color: #553A41;
-    color: #DEDABD;
-    font-size: 3vmin;
-    margin: 2vmin 0;
-  }
+#play-again {
+  background-color: #553A41;
+  color: #DEDABD;
+  font-size: 3vmin;
+  margin: 2vmin 0;
+}
 
-  .btn:hover {
-    background-color:  #DEDABD;
-    color: #553A41;
-  }
+.btn:hover {
+  background-color: #DEDABD;
+  color: #553A41;
+}
 
-  .btn:active {
+.btn:active {
   background-color: #DEDABD;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
-  }
+}
 
-  #right-color {
-    margin-bottom: 0;
-    margin-left: 0;
-  }
-
-
-   #board {
-    display: flex;
-    justify-content: center;
-    margin-left: 21.7vmin;
-  }
-     
-  #cells {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 1.5vmin;
-    margin-left: 3.2vmin;
-    margin-bottom: 2.5vmin;
-
-  }
-
-  #cells > .row {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 20vmin;
-    height: 3.5vmin;
-    border-style: outset;
-    border-color: #553A41;
-    border-width: 0.5vmin;;
-    padding: 1.8vmin 0.5vmin;
-    border-radius: 10%;
-  } 
-
-  #cells > .row > div {
-    border-radius: 50%;
-    border-style: inset;
-    height: 3vmin;
-    width: 3vmin;
-    border: 0.2vmin solid black;
-  
-
-  }
+#right-color {
+  margin-bottom: 0;
+  margin-left: 0;
+}
 
 
-   #pegs {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    gap: 0.2vmin;
-    margin-left: 1.5vmin;
-    margin-bottom: 2.1vmin;
-    
-  }
+#board {
+  display: flex;
+  justify-content: center;
+  margin-left: 21.7vmin;
+}
 
-  #pegs > .row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    grid-template-rows: 1fr 1fr;
-    gap: .3vmin .3vmin;
-    align-content: center;
-    justify-content: center;
-  }
+#cells {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 1.5vmin;
+  margin-left: 3.2vmin;
+  margin-bottom: 2.5vmin;
+}
+
+#cells>.row {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 20vmin;
+  height: 3.5vmin;
+  border-style: outset;
+  border-color: #553A41;
+  border-width: 0.5vmin;
+  ;
+  padding: 1.8vmin 0.5vmin;
+  border-radius: 10%;
+}
+
+#cells>.row>div {
+  border-radius: 50%;
+  border-style: inset;
+  height: 3vmin;
+  width: 3vmin;
+  border: 0.2vmin solid black;
+}
 
 
-  #pegs > .row > div {
-    height: 1.2vmin;
-    width: 1.2vmin;
-    border: 0.2vmin solid black;
-   
-  }
-  
+#pegs {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  gap: 0.2vmin;
+  margin-left: 1.5vmin;
+  margin-bottom: 2.1vmin;
+}
 
-  #peg-key {
-    display: flex;
-    flex-direction: column;
-    justify-content: end;
-    gap: 5vmin;
-    margin-bottom: 4vmin;
-    margin-left: 3vmin;
-    /* margin: 0 0 3vmin 5vmin;; */
+#pegs>.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: .3vmin .3vmin;
+  align-content: center;
+  justify-content: center;
+}
 
-  }
 
-  #peg-key > div {
-    height: 3vmin;
-    width: 3vmin;
-    border: 0.25vmin solid black;
-  }
+#pegs>.row>div {
+  height: 1.2vmin;
+  width: 1.2vmin;
+  border: 0.2vmin solid black;
+}
+
+
+#peg-key {
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  gap: 5vmin;
+  margin-bottom: 4vmin;
+  margin-left: 3vmin;
+}
+
+#peg-key>div {
+  height: 3vmin;
+  width: 3vmin;
+  border: 0.25vmin solid black;
+}
 
 #almost {
   background-color: #DEDABD;
@@ -178,63 +171,59 @@
 
 #words-key {
   display: flex;
-    flex-direction: column;
-    justify-content: end;
-    font-size: 3vmin;;
-    gap: 5vmin;
-    margin-bottom: 3.65vmin;
-    margin-left: 1.2vmin;
+  flex-direction: column;
+  justify-content: end;
+  font-size: 3vmin;
+  gap: 5vmin;
+  margin-bottom: 3.65vmin;
+  margin-left: 1.2vmin;
 }
 
+#markers {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 19vmin;
+  margin-right: 1vmin;
+  margin-bottom: 2vmin;
+}
 
+#markers>div {
+  height: 3vmin;
+  width: 3vmin;
+  margin-right: 0;
+}
 
-  #markers {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    width: 19vmin;
-    margin-right: 1vmin;
-    margin-bottom: 2vmin;
-  }
-  
-  #markers > div {
-    height: 3vmin;
-    width: 3vmin;
-    margin-right: 0;
-  }
-  
-#markers > div {
+#markers>div {
   background-image: url("../images/marker1.png");
   background-size: cover;
-  scale:1.25;
+  scale: 1.25;
 }
 
-#markers > div:hover {
-  transform:scale(0.9);
+#markers>div:hover {
+  transform: scale(0.9);
   transition: transform 150ms ease-in;
 }
 
-  #picker {
-    display: grid;
-    grid-template-columns: repeat(6, 1fr);
-    width: 25vmin;
-    gap: 1vmin;
-    margin: 0;
-    
-  }
+#picker {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  width: 25vmin;
+  gap: 1vmin;
+  margin: 0;
+}
 
-  #picker > div {
-    border-radius: 50%;
-    height: 2.5vmin;
-    width: 2.5vmin;
-    scale:1.20;
-  }
+#picker>div {
+  border-radius: 50%;
+  height: 2.5vmin;
+  width: 2.5vmin;
+  scale: 1.20;
+}
 
-  #picker > div:hover {
-    transform:scale(1.5);
-    transition: transform 150ms ease-in;
-  }
-
+#picker>div:hover {
+  transform: scale(1.5);
+  transition: transform 150ms ease-in;
+}
 
 #red {
   background-image: url("../images/red-shroom.png");
@@ -256,10 +245,9 @@
   background-size: cover;
 }
 
-#orange{
+#orange {
   background-image: url("../images/orange-shroom.PNG");
   background-size: cover;
-
 }
 
 #black {
@@ -268,10 +256,8 @@
 }
 
 #submit {
-font-size: 3vmin;
-background-color: #553A41;
-color: #DEDABD;
-margin: 2vmin
-
+  font-size: 3vmin;
+  background-color: #553A41;
+  color: #DEDABD;
+  margin: 2vmin
 }
-
