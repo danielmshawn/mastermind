@@ -132,7 +132,7 @@ function handleSelect(evt) {
   render();
 }
 
-function handleSubmit(evt) {
+function handleSubmit() {
   if (board.includes(null)) return;
   feedback();
   winner = checkWinner();
