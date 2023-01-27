@@ -29,9 +29,9 @@ To make a choice, just click on what color mushroom you'd like to add to your gu
 
 # Getting Started
 
-![Click here for my Github Repo which contains the original wireframe and pseudocode](https://github.com/danielmshawn/mastermind)
+[Click here for my Github Repo which contains the original wireframe and pseudocode](https://github.com/danielmshawn/mastermind)
 
-![Click to play MushroomMind!](https://danielmshawn.github.io/mastermind/)
+[Click to play MushroomMind!](https://danielmshawn.github.io/mastermind/)
 
 # Next Steps
 Future enhancements include...
