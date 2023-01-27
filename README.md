@@ -15,11 +15,11 @@ To make a choice, just click on what color mushroom you'd like to add to your gu
 
 # Screenshots
 
-![The Game Board](https://imgur.com/a/kukeKWT)
+![The Game Board](https://i.imgur.com/f9BwAfC.png)
 
-![The Player Guessing](https://imgur.com/a/WPpupX9)
+![The Player Guessing](https://i.imgur.com/4gCzqps.png)
 
-![The Player Wins!](https://imgur.com/a/FVNSCuF)
+![The Player Wins!](https://i.imgur.com/h2PD1dt.png)
 
 # Technologies Used
 
