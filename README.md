@@ -7,7 +7,7 @@
 
 It is then up to the 2nd player (you) to use your powers of deductive logic and reasoning to crack the secret code and choose the correct mushroom combination. 
 
-When you make a guess, you will recieve feedback from four little squares to the right of your guess. THe "Almost..." color means you have a mushroom in your guess that is the right color, but not in the right position. The "Perfect!" color means you have a mushroom that is both the right color, AND in the right position. If you get four "Perfect!" pegs, that means you have chosen the correct code and won the game!
+When you make a guess, you will recieve feedback from four little squares to the right of your guess. The "Almost..." color means you have a mushroom in your guess that is the right color, but not in the right position. The "Perfect!" color means you have a mushroom that is both the right color, AND in the right position. If you get four "Perfect!" pegs, that means you have chosen the correct code and won the game!
 
 To make a choice, just click on what color mushroom you'd like to add to your guess, and then the corresponding dirt patch above it. You'll be cracking codes in no time!
 
